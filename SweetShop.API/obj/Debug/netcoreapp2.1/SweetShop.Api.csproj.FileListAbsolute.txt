@@ -1,0 +1,14 @@
+D:\GitHub\E-Commerce\sweetshop.api\bin\Debug\netcoreapp2.1\SweetShop.Api.deps.json
+D:\GitHub\E-Commerce\sweetshop.api\bin\Debug\netcoreapp2.1\SweetShop.Api.runtimeconfig.json
+D:\GitHub\E-Commerce\sweetshop.api\bin\Debug\netcoreapp2.1\SweetShop.Api.runtimeconfig.dev.json
+D:\GitHub\E-Commerce\sweetshop.api\bin\Debug\netcoreapp2.1\SweetShop.Api.dll
+D:\GitHub\E-Commerce\sweetshop.api\bin\Debug\netcoreapp2.1\SweetShop.Api.pdb
+D:\GitHub\E-Commerce\sweetshop.api\obj\Debug\netcoreapp2.1\SweetShop.Api.csprojAssemblyReference.cache
+D:\GitHub\E-Commerce\sweetshop.api\obj\Debug\netcoreapp2.1\SweetShop.Api.csproj.CoreCompileInputs.cache
+D:\GitHub\E-Commerce\sweetshop.api\obj\Debug\netcoreapp2.1\SweetShop.Api.RazorAssemblyInfo.cache
+D:\GitHub\E-Commerce\sweetshop.api\obj\Debug\netcoreapp2.1\SweetShop.Api.RazorAssemblyInfo.cs
+D:\GitHub\E-Commerce\sweetshop.api\obj\Debug\netcoreapp2.1\SweetShop.Api.AssemblyInfoInputs.cache
+D:\GitHub\E-Commerce\sweetshop.api\obj\Debug\netcoreapp2.1\SweetShop.Api.AssemblyInfo.cs
+D:\GitHub\E-Commerce\sweetshop.api\obj\Debug\netcoreapp2.1\SweetShop.Api.RazorTargetAssemblyInfo.cache
+D:\GitHub\E-Commerce\sweetshop.api\obj\Debug\netcoreapp2.1\SweetShop.Api.dll
+D:\GitHub\E-Commerce\sweetshop.api\obj\Debug\netcoreapp2.1\SweetShop.Api.pdb
