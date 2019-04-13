@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SweetShop.API.Data;
 
 namespace SweetShop.Api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20190413133856_CreateTableCategory")]
+    partial class CreateTableCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,7 +62,7 @@ namespace SweetShop.Api.Migrations
 
             modelBuilder.Entity("SweetShop.API.Models.Cake", b =>
                 {
-                    b.HasOne("SweetShop.API.Models.Category", "Category")
+                    b.HasOne("SweetShop.API.Models.Category")
                         .WithMany("Cakes")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);

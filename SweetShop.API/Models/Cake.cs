@@ -11,5 +11,6 @@ namespace SweetShop.API.Models
         public bool Status { get; set; }
 
         public int CategoryId { get; set; }
+        public Category Category { get; set; }
     }
 }

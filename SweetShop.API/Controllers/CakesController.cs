@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SweetShop.API.Models;
 using SweetShop.API.Repository;
+using SweetShop.API.UnitOfWork;
 
 namespace SweetShop.API.Controllers
 {
@@ -9,24 +10,29 @@ namespace SweetShop.API.Controllers
     [ApiController]
     public class CakesController: ControllerBase
     {
-        private readonly ISweetShopRepository _repo;
+        private readonly ICakeRepository _cakeRepo;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CakesController(ISweetShopRepository repo)
+        public CakesController(ICakeRepository cakeRepo,
+                               IUnitOfWork unitOfWork)
         {
-            _repo = repo;
+            _cakeRepo = cakeRepo;
+            _unitOfWork = unitOfWork;
         }
 
         //GET: api/cakes
         [HttpGet]
-        public async Task<IActionResult> GetCakes(){
-            var cakes = await _repo.GetAll();
+        public async Task<ActionResult> GetCakes()
+        {
+            var cakes = await _cakeRepo.GetAll();
             return Ok(cakes);
         }
 
         //GET: api/cakes/{id}
         [HttpGet("{id}")]
-        public async Task<ActionResult<Cake>> GetCake(int id){
-            var cake = await _repo.Get(id);
+        public async Task<ActionResult<Cake>> GetCake(int id)
+        {
+            var cake = await _cakeRepo.Get(id);
 
             if(cake == null)
                 return NotFound();
@@ -34,28 +40,40 @@ namespace SweetShop.API.Controllers
             return cake;
         }
 
-        //POST: api/cakes
+        // //POST: api/cakes
         [HttpPost]
         public async Task<ActionResult<Cake>> Create(Cake cake)
         {
-            _repo.Add(cake);
-          
-          if(await _repo.SaveAll())
-            return Ok();
+            await _cakeRepo.Create(cake);
 
-        return BadRequest("Failed to add a cake");
+            if(await _unitOfWork.SaveAll())
+                  return Ok();
+
+            return BadRequest("Failed to create cake");
+
         }
 
         //PUT: api/cakes/{id}
-        [HttpPut]
-        public async Task<ActionResult<Cake>> Update([FromBody]Cake cake, int id)
+        [HttpPut("{id}")]
+        public  IActionResult Update(Cake cake, int id)
         {
-            if(id == cake.Id)
+            if(id != cake.Id)
                 return BadRequest();
 
-            _repo.Update(cake);
-            await _repo.SaveAll();
+            _cakeRepo.Update(cake);
+            _unitOfWork.SaveAll();
+
             return NoContent();
+        }
+
+        //DELETE: api/cakes/{id}
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+           await _cakeRepo.Delete(id);
+           if(await _unitOfWork.SaveAll())
+           return Ok();
+           return BadRequest("Failed to delete cake");
         }
     }
 }

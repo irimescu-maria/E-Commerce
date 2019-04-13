@@ -13,7 +13,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SweetShop.API.Data;
+using SweetShop.API.Models;
 using SweetShop.API.Repository;
+using SweetShop.API.UnitOfWork;
 
 namespace SweetShop.Api
 {
@@ -37,7 +39,9 @@ namespace SweetShop.Api
 
         
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddScoped<ISweetShopRepository, SweetShopRepository>();
+            services.AddScoped<ICakeRepository, CakeRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
