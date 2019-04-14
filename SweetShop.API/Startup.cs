@@ -39,6 +39,7 @@ namespace SweetShop.Api
 
         
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddCors();
             services.AddScoped<ICakeRepository, CakeRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
@@ -56,7 +57,8 @@ namespace SweetShop.Api
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
+            app.UseCors(x => x.AllowAnyOrigin ().AllowAnyMethod ().AllowAnyHeader ());
             app.UseMvc();
         }
     }

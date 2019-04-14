@@ -12,3 +12,17 @@ D:\GitHub\E-Commerce\sweetshop.api\obj\Debug\netcoreapp2.1\SweetShop.Api.Assembl
 D:\GitHub\E-Commerce\sweetshop.api\obj\Debug\netcoreapp2.1\SweetShop.Api.RazorTargetAssemblyInfo.cache
 D:\GitHub\E-Commerce\sweetshop.api\obj\Debug\netcoreapp2.1\SweetShop.Api.dll
 D:\GitHub\E-Commerce\sweetshop.api\obj\Debug\netcoreapp2.1\SweetShop.Api.pdb
+C:\Users\Maria\Desktop\GitHub\E-Commerce\SweetShop.API\bin\Debug\netcoreapp2.1\SweetShop.Api.deps.json
+C:\Users\Maria\Desktop\GitHub\E-Commerce\SweetShop.API\bin\Debug\netcoreapp2.1\SweetShop.Api.runtimeconfig.json
+C:\Users\Maria\Desktop\GitHub\E-Commerce\SweetShop.API\bin\Debug\netcoreapp2.1\SweetShop.Api.runtimeconfig.dev.json
+C:\Users\Maria\Desktop\GitHub\E-Commerce\SweetShop.API\bin\Debug\netcoreapp2.1\SweetShop.Api.dll
+C:\Users\Maria\Desktop\GitHub\E-Commerce\SweetShop.API\bin\Debug\netcoreapp2.1\SweetShop.Api.pdb
+C:\Users\Maria\Desktop\GitHub\E-Commerce\SweetShop.API\obj\Debug\netcoreapp2.1\SweetShop.Api.csprojAssemblyReference.cache
+C:\Users\Maria\Desktop\GitHub\E-Commerce\SweetShop.API\obj\Debug\netcoreapp2.1\SweetShop.Api.csproj.CoreCompileInputs.cache
+C:\Users\Maria\Desktop\GitHub\E-Commerce\SweetShop.API\obj\Debug\netcoreapp2.1\SweetShop.Api.RazorAssemblyInfo.cache
+C:\Users\Maria\Desktop\GitHub\E-Commerce\SweetShop.API\obj\Debug\netcoreapp2.1\SweetShop.Api.RazorAssemblyInfo.cs
+C:\Users\Maria\Desktop\GitHub\E-Commerce\SweetShop.API\obj\Debug\netcoreapp2.1\SweetShop.Api.AssemblyInfoInputs.cache
+C:\Users\Maria\Desktop\GitHub\E-Commerce\SweetShop.API\obj\Debug\netcoreapp2.1\SweetShop.Api.AssemblyInfo.cs
+C:\Users\Maria\Desktop\GitHub\E-Commerce\SweetShop.API\obj\Debug\netcoreapp2.1\SweetShop.Api.RazorTargetAssemblyInfo.cache
+C:\Users\Maria\Desktop\GitHub\E-Commerce\SweetShop.API\obj\Debug\netcoreapp2.1\SweetShop.Api.dll
+C:\Users\Maria\Desktop\GitHub\E-Commerce\SweetShop.API\obj\Debug\netcoreapp2.1\SweetShop.Api.pdb

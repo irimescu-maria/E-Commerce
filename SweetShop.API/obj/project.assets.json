@@ -11886,11 +11886,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\GitHub\\E-Commerce\\SweetShop.API\\SweetShop.Api.csproj",
+      "projectUniqueName": "c:\\Users\\Maria\\Desktop\\GitHub\\E-Commerce\\SweetShop.API\\SweetShop.Api.csproj",
       "projectName": "SweetShop.Api",
-      "projectPath": "d:\\GitHub\\E-Commerce\\SweetShop.API\\SweetShop.Api.csproj",
+      "projectPath": "c:\\Users\\Maria\\Desktop\\GitHub\\E-Commerce\\SweetShop.API\\SweetShop.Api.csproj",
       "packagesPath": "C:\\Users\\Maria\\.nuget\\packages\\",
-      "outputPath": "d:\\GitHub\\E-Commerce\\SweetShop.API\\obj\\",
+      "outputPath": "c:\\Users\\Maria\\Desktop\\GitHub\\E-Commerce\\SweetShop.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
