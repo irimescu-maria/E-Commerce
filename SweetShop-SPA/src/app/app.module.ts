@@ -1,9 +1,12 @@
-import { ProductService, CakeService } from './_services/cake.service';
+import { ProductDetailComponent } from './products/product-detail/product-detail.component';
+
+import { CakeService } from './_services/cake.service';
 import { ProductComponent } from './products/products.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -16,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     NavComponent,
     HomeComponent,
-    ProductComponent
+    ProductComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -24,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule
+
   ],
   providers: [
     CakeService

@@ -1,13 +1,16 @@
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-<hr/>
-<div class="row">
-    <div *ngFor="let cake of cakes" class="col-sm-6 col-md-4 col-lg-4 col-xl-2">
-      <p>{{cake.name}}</p>
-    </div>
+<div class="row"> 
+   <div class="mat-card col-md-10" *ngFor="let cake of cakes" >
+      <div class="mat-card-title">
+        {{cake.name}}
+      </div>
+      <div class="card-content">
+       <img class="mat-card-image"  alt="Photo">
+      </div>
+      <div class="mat-card-footer">
+        {{cake.price}}
+      </div>
+      <div>
+        <button class="btn btn-primary"
+        [routerLink]="['/products/', cake.id]"> Detalii</button>
+      </div>
   </div>

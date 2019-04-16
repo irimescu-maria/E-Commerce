@@ -20,4 +20,8 @@ export class CakeService {
         return this.http
             .get<Cake[]>(this.baseUrl + 'cakes');
     }
+ 
+    getProduct(id): Observable<Cake> {
+        return this.http.get<Cake>(this.baseUrl + 'cakes/' + id);
+    }
 }

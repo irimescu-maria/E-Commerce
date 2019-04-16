@@ -1,5 +1,5 @@
+import { Cake } from './../_models/cake';
 import { CakeService } from '../_services/cake.service';
-import { Cake } from '../_models/cake';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 @Component({
@@ -20,10 +20,6 @@ export class ProductComponent implements OnInit{
     }
 
     ngOnInit() {
-        // this.route.data.subscribe(data => {
-        //     this.route = data['products'];
-        // });
-        // console.log(this.products);
        this.loadProducts();
     }
 
@@ -38,4 +34,6 @@ export class ProductComponent implements OnInit{
             );
             console.log(this.cakeService.getProducts());
     }
+
+
 }

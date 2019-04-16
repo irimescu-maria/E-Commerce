@@ -1,3 +1,4 @@
+import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { ProductComponent } from './products/products.component';
 import { HomeComponent } from './home/home.component';
 
@@ -11,6 +12,10 @@ export const appRoutes: Routes = [
         path: 'products',
         component: ProductComponent
     },
+    {
+        path: 'products/:id',
+        component: ProductDetailComponent
+        },
     {
         path: '**',
         redirectTo: '',
