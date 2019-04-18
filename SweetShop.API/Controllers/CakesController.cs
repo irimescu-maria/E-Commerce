@@ -21,7 +21,7 @@ namespace SweetShop.API.Controllers
         }
 
         //GET: api/cakes
-        [HttpGet]
+        [HttpGet(Name = "GetCakes")]
         public async Task<ActionResult> GetCakes()
         {
             var cakes = await _cakeRepo.GetAll();
