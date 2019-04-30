@@ -1,15 +1,15 @@
-import { Router } from '@angular/router';
 import { AuthService } from './../_services/auth.service';
 import { AlertifyService } from './../_services/alertify.service';
-import { Component, Input } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { Router } from '@angular/router';
 
 @Component({
-    selector: 'nav-component',
-    templateUrl: './nav.component.html',
-    styleUrls: ['./nav.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
-export class NavComponent{
-   
+export class LoginComponent implements OnInit{
+
     model: any = {};
 
     /**
@@ -36,14 +36,5 @@ export class NavComponent{
 
  loggedIn() {
    return this.authService.loggedIn();
- }
-
- logout() {
-   localStorage.removeItem('token');
-   localStorage.removeItem('user');
-   this.authService.decodedToken = null;
-   this.authService.currentUser = null;
-   this.alertify.message('Logged out');
-   this.router.navigate(['/']); // Redirect to home page after logout
  }
 }
