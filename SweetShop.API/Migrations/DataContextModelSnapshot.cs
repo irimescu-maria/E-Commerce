@@ -31,7 +31,7 @@ namespace SweetShop.Api.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<string>("Photo");
+                    b.Property<int>("PhotoId");
 
                     b.Property<decimal>("Price");
 
@@ -42,6 +42,8 @@ namespace SweetShop.Api.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("PhotoId");
 
                     b.ToTable("Cakes");
                 });
@@ -57,6 +59,90 @@ namespace SweetShop.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("SweetShop.API.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
+
+                    b.Property<DateTime>("OrderPlaced");
+
+                    b.Property<string>("PhoneNumber");
+
+                    b.Property<decimal>("Total");
+
+                    b.Property<string>("Username");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("SweetShop.API.Models.OrderDetail", b =>
+                {
+                    b.Property<int>("OrderDetailId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Amount");
+
+                    b.Property<int>("CakeId");
+
+                    b.Property<int>("OrderId");
+
+                    b.Property<decimal>("Price");
+
+                    b.HasKey("OrderDetailId");
+
+                    b.HasIndex("CakeId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderDetails");
+                });
+
+            modelBuilder.Entity("SweetShop.API.Models.Photo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<byte[]>("ContentType");
+
+                    b.Property<string>("Data");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Photos");
+                });
+
+            modelBuilder.Entity("SweetShop.API.Models.ShoppingCartItem", b =>
+                {
+                    b.Property<int>("ShoppingCartItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Amount");
+
+                    b.Property<int?>("CakeId");
+
+                    b.Property<string>("ShoppingCartId");
+
+                    b.HasKey("ShoppingCartItemId");
+
+                    b.HasIndex("CakeId");
+
+                    b.ToTable("ShoppingCartItems");
                 });
 
             modelBuilder.Entity("SweetShop.API.Models.User", b =>
@@ -86,10 +172,35 @@ namespace SweetShop.Api.Migrations
 
             modelBuilder.Entity("SweetShop.API.Models.Cake", b =>
                 {
-                    b.HasOne("SweetShop.API.Models.Category", "Category")
+                    b.HasOne("SweetShop.API.Models.Category")
                         .WithMany("Cakes")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SweetShop.API.Models.Photo", "Photo")
+                        .WithMany()
+                        .HasForeignKey("PhotoId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SweetShop.API.Models.OrderDetail", b =>
+                {
+                    b.HasOne("SweetShop.API.Models.Cake", "Cake")
+                        .WithMany()
+                        .HasForeignKey("CakeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SweetShop.API.Models.Order", "Order")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SweetShop.API.Models.ShoppingCartItem", b =>
+                {
+                    b.HasOne("SweetShop.API.Models.Cake", "Cake")
+                        .WithMany()
+                        .HasForeignKey("CakeId");
                 });
 #pragma warning restore 612, 618
         }

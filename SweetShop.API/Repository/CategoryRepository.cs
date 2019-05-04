@@ -44,7 +44,12 @@ namespace SweetShop.API.Repository
 
         public bool Update(Category category)
         {
-            throw new System.NotImplementedException();
+            if(category == null){
+                throw new ArgumentNullException();
+            }
+
+            _context.Categories.Update(category);
+            return true;
         }
     }
 }

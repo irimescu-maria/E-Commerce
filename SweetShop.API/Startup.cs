@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
@@ -38,15 +40,31 @@ namespace SweetShop.Api
                         warnings.Ignore(CoreEventId.IncludeIgnoredWarning);
                     }));
 
-        
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddCors();
+            services.AddMvc(options =>
+            {
+                var jsonInputFormatter = options.InputFormatters.OfType<JsonInputFormatter>().First();
+                jsonInputFormatter.SupportedMediaTypes.Add("multipart/form-data");
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+
+
+            services.AddSession();
+
+            services.AddMemoryCache();
+
             services.AddAutoMapper();
             services.AddScoped<ICakeRepository, CakeRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IPhotoRepository, PhotoRepository>();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(sp => ShoppingCart.GetCart(sp));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,8 +80,16 @@ namespace SweetShop.Api
             }
 
             //app.UseHttpsRedirection();
-            app.UseCors(x => x.AllowAnyOrigin ().AllowAnyMethod ().AllowAnyHeader ());
+            app.UseCors(
+     options => options.WithOrigins
+       ("http://localhost:4200")
+          .AllowAnyMethod().AllowAnyHeader()
+   );
+            // app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseMvc();
+            app.UseSession();
+
+
         }
     }
 }

@@ -1,3 +1,8 @@
+import { PhotoService } from './_services/photo.service';
+import { AuthGuard } from './_guards/auth.guard';
+import { CategoryAddComponent } from './categories/categories-add/categories-add.component';
+import { CategoryEditComponent } from './categories/categories-edit/category-edit.component';
+import { CategoryService } from './_services/category.service';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { ProductAddComponent } from './products/product-add/product-add.component';
 import { AdminComponent } from './admin/admin.component';
@@ -20,11 +25,24 @@ import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
+import { CategoriesComponent } from './categories/category.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { ShoppingCartComponent } from './shoppingCart/shoppingCart.component';
+import { NavUserComponent } from './nav/nav-user/nav-user.component';
+import { NavAdminComponent } from './nav/nav-admin/nav-admin.component';
+import { PhotoListComponent } from './photos/photos-list/photos.component';
+import { PhotosAddComponent } from './photos/photos-add/photos-add.component';
+
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
+    NavUserComponent,
+    NavAdminComponent,
     HomeComponent,
     ProductComponent,
     ProductDetailComponent,
@@ -32,7 +50,13 @@ import { RegisterComponent } from './register/register.component';
     LoginComponent,
     AdminComponent,
     ProductAddComponent,
-    ProductEditComponent
+    ProductEditComponent,
+    CategoriesComponent,
+    CategoryEditComponent,
+    CategoryAddComponent,
+    ShoppingCartComponent,
+    PhotoListComponent,
+    PhotosAddComponent
   ],
   imports: [
     BrowserModule,
@@ -40,13 +64,23 @@ import { RegisterComponent } from './register/register.component';
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['localhost:5001'],
+        blacklistedRoutes: ['localhost:5000/api/auth']
+      }
+    })
 
   ],
   providers: [
     CakeService,
     AuthService,
-    AlertifyService
+    AlertifyService,
+    CategoryService,
+    PhotoService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

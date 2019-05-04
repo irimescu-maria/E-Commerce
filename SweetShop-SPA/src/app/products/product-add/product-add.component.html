@@ -1,63 +1,48 @@
-<h3>Add new cake</h3>
+<div class="container">
+  <h3>Add new cake</h3>
+  <div class="form-group">
+    <label class="label">Name</label>
+    <input class="form-control col-md-3" type="text" placeholder="Name" [(ngModel)]="cake.name">
+    <div class="invalid-feedback">Please choose a name for cake</div>
+  </div>
 
+  <div class="form-group">
+    <label class="label">Description</label>
+    <input class="form-control col-md-3" type="text" placeholder="Description" [(ngModel)]="cake.description">
+    <div class="invalid-feedback">Please choose a description for cake</div>
+  </div>
+  <div class="form-group">
+    <label class="label">Quantity</label>
+    <input class="form-control col-md-3" type="number" placeholder="Quantity" [(ngModel)]="cake.quantity">
+    <div class="invalid-feedback">Please choose a quantity for cake</div>
+  </div>
+  <div class="form-group">
+    <label class="label">Price</label>
+    <input class="form-control col-md-3" type="number" placeholder="Price" [(ngModel)]="cake.price">
+    <div class="invalid-feedback">Please choose a price for cake</div>
+  </div>
+  <div class="form-group">
+    <label class="label">Status</label>
+    <input class="form-control col-md-3" type="text" placeholder="Status" [(ngModel)]="cake.status">
+    <div class="invalid-feedback">Please choose a status for cake</div>
+  </div>
 
-    <div class="form-group">
-      <input type="text" 
-    placeholder="Name" [(ngModel)]="cake.name">
-      <div class="invalid-feedback">Please choose a name for cake</div>
-    </div>
-  
-    <div class="form-group">
-      <input 
-        placeholder="Description" [(ngModel)]="cake.description">
-
-    </div>
-
-    <div class="form-group">
-      <input  
-        placeholder="photo" [(ngModel)]="cake.photo">
-      <!-- <div class="invalid-feedback" *ngIf="createAddForm.get('photo').touched && createAddForm.get('photo').hasError('required')">photo
-        is required</div> -->
-    </div>
-    <div class="form-group">
-        <input  
-          placeholder="quantity">
-        <!-- <div class="invalid-feedback" *ngIf="createAddForm.get('photo').touched && createAddForm.get('photo').hasError('required')">photo
-          is required</div> -->
-      </div>
-    <div class="form-group">
-      <input 
-        placeholder="price">
-      <!-- <div class="invalid-feedback" *ngIf="createAddForm.get('price').hasError('required')
-        && createAddForm.get('price').touched"> 
-        price is required</div>
-  
-      <div class="invalid-feedback" *ngIf="createAddForm.get('price').hasError('minlength')
-          && createAddForm.get('price').touched">
-        price must be at least 4 characters</div>
-  
-      <div class="invalid-feedback" *ngIf="createAddForm.get('price').hasError('maxlength')
-              && createAddForm.get('price').touched">
-        price cannot exceed 8 characters</div>
-        -->
-    </div>
-
-  
-    <div class="form-group">
-        <input 
-          placeholder="status" [(ngModel)]="cake.status">
-        <!-- <div class="invalid-feedback" *ngIf="createAddForm.get('status').touched && createAddForm.get('status').hasError('required')">photo
-          is required</div> -->
-      </div>
-
-      <div class="form-group">
-        <input 
-          placeholder="category" [(ngModel)]="cake.categoryId">
-        <!-- <div class="invalid-feedback" *ngIf="createAddForm.get('photo').touched && createAddForm.get('photo').hasError('required')">photo
-          is required</div> -->
-      </div>
-
-    <div class="form-group text-center">
-      <button class="btn btn-success" type="submit" (click)="add()">Add</button>
-      <!-- <button class="btn btn-default" type="button" (click)="cancel()">Cancel</button> -->
-    </div>
+  <div class=" form-group" style="text-align:left;">
+    <label class="label">Category</label>
+    <select [(ngModel)]="cake.categoryId" class="form-control col-md-3">
+      <option value="0">Select Category</option>
+      <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
+    </select>
+  </div>
+  <div class="form-group" style="text-align:left;">
+    <label class="label">Photo</label>
+    <select class="form-control col-md-3" [(ngModel)]="cake.photoId">
+      <option value="0">Select Photo</option>
+      <option *ngFor="let photo of photos" [ngValue]="photo.id">{{photo.name}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-success" type="submit" (click)="add()">Add</button>
+    <button class="btn btn-default" type="button" (click)="cancel()">Cancel</button>
+  </div>
+</div>

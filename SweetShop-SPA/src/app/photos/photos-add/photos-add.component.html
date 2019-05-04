@@ -1,0 +1,10 @@
+<div class="container">
+    <h5>Add photos</h5>
+    <form (ngSubmit)="onUpload(filesData)">
+            <img [src]="imageUrl"  style="width:250px;height:200px">
+    <input type="file" #filesData  (change)="handleFileInput($event.target.files);" >
+
+    <button type="submit" >Upload</button> 
+ </form>
+
+</div>

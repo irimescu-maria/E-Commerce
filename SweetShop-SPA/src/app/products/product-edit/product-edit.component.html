@@ -1,31 +1,50 @@
 <div class="container custom-container">
-    <div class="col-md-12">
-      
-      <h3 class="mb-3 text-center">Update Cake</h3>
-  
-      <div class="form-group">
-        <input type="text" [(ngModel)]="cake.name" class="form-control" placeholder="Name">
-      </div>
-  
-      <div class="form-group">
-        <input type="text" [(ngModel)]="cake.description" class="form-control" placeholder="Description">
-      </div>
-  
-      <div class="form-group">
-        <input type="text" [(ngModel)]="cake.photo" class="form-control" placeholder="Photo">
-      </div>
-      <div class="form-group">
-        <input type="number" [(ngModel)]="cake.price" class="form-control" placeholder="Price">
-      </div>
-      <div class="form-group">
-        <input type="number" [(ngModel)]="cake.quantity" class="form-control" placeholder="Quantity">
-      </div>
-      <div class="form-group">
-        <input type="hidden" [(ngModel)]="cake.status" class="form-control" placeholder="Status">
-      </div>
-      <div class="form-group">
-        <button class="btn btn-success btn-lg btn-block" (click)="updateCake()">Update Cake</button>
-      </div>
-      
+  <div class="col-md-12">
+
+    <h3 class="mb-3 text-center">Update Cake</h3>
+
+    <div class="form-group">
+      <label class="label">Name</label>
+      <input type="text" [(ngModel)]="cake.name" class="form-control" placeholder="Name">
     </div>
+
+    <div class="form-group">
+      <label class="label">Description</label>
+      <input type="text" [(ngModel)]="cake.description" class="form-control" placeholder="Description">
+    </div>
+
+    <div class="form-group">
+
+      <label class="label">Price</label>
+      <input type="number" [(ngModel)]="cake.price" class="form-control" placeholder="Price">
+    </div>
+    <div class="form-group">
+
+      <label class="label">Quantity</label>
+      <input type="number" [(ngModel)]="cake.quantity" class="form-control" placeholder="Quantity">
+    </div>
+    <div class="form-group">
+      <input type="hidden" [(ngModel)]="cake.status" class="form-control" placeholder="Status">
+    </div>
+
+    <div class=" form-group" style="text-align:left;">
+      <label class="label">Category</label>
+      <select [(ngModel)]="cake.categoryId" class="form-control col-md-3">
+        <option value="0">Select Category</option>
+        <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
+      </select>
+    </div>
+    <div class="form-group" style="text-align:left;">
+      <label class="label">Photo</label>
+      <select class="form-control col-md-3" [(ngModel)]="cake.photoId">
+        <option value="0">Select Photo</option>
+        <option *ngFor="let photo of photos" [ngValue]="photo.id">{{photo.name}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-success" (click)="updateCake()">Update Cake</button>
+      <button class="btn btn-default" (click)="cancel()">Cancel</button>
+    </div>
+
   </div>
+</div>

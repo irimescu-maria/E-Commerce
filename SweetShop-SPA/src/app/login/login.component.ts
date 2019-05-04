@@ -30,7 +30,11 @@ export class LoginComponent implements OnInit{
     }, error => {
      this.alertify.error('Failed to login');
     }, () => {
+      if(this.authService.currentUser.username == 'admin') {
+        this.router.navigate(['/admin']);
+      }else{
       this.router.navigate(['/products']); // Redirect to members page after login
+      }
     });
   }
 

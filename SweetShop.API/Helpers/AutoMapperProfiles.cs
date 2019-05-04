@@ -11,7 +11,8 @@ namespace SweetShop.API.Helpers
         {
              CreateMap<UserForRegisterDto, User>();
               CreateMap<User, UserForDetailedDto>();
-             
+              CreateMap<PhotoForCreationDto, Photo>();
+             CreateMap<Photo, PhotoForReturnDto> ();
         }
        
 

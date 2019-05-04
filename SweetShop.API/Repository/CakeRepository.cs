@@ -30,7 +30,7 @@ namespace SweetShop.API.Repository
 
         public async Task<Cake> Get(int id)
         {
-            return await _context.Cakes.FirstOrDefaultAsync(c => c.Id == id);
+            return await _context.Cakes.Include(p=>p.Photo).FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task<IEnumerable<Cake>> GetAll()

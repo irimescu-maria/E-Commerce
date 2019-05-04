@@ -1,3 +1,4 @@
+import { Category } from './category';
 export interface Cake {
     id: number;
     name: string;
@@ -7,4 +8,5 @@ export interface Cake {
     quantity: number;
     status: boolean;    
     categoryId: number;
+    photoId: number;
 }

@@ -23,7 +23,7 @@ export class CakeService {
     constructor(private http: HttpClient) {
     }
 
-    //Add new cake
+    //Get list of cakes
     getProducts(): Observable<Cake[]> {
         return this.http
             .get<Cake[]>(this.baseUrl + 'cakes');

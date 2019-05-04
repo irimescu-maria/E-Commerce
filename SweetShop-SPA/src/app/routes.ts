@@ -1,3 +1,7 @@
+import { PhotoListComponent } from './photos/photos-list/photos.component';
+import { ShoppingCartComponent } from './shoppingCart/shoppingCart.component';
+import { AuthGuard } from './_guards/auth.guard';
+import { CategoryEditComponent } from "./categories/categories-edit/category-edit.component";
 import { ProductAddComponent } from "./products/product-add/product-add.component";
 import { AdminComponent } from "./admin/admin.component";
 import { LoginComponent } from "./login/login.component";
@@ -7,12 +11,19 @@ import { HomeComponent } from "./home/home.component";
 
 import { Routes } from "@angular/router";
 import { RegisterComponent } from "./register/register.component";
-import { patch } from "webdriver-js-extender";
+
 import { ProductEditComponent } from "./products/product-edit/product-edit.component";
+import { CategoriesComponent } from "./categories/category.component";
+import { CategoryAddComponent } from "./categories/categories-add/categories-add.component";
+import { PhotosAddComponent } from './photos/photos-add/photos-add.component';
 export const appRoutes: Routes = [
   {
     path: "",
     component: HomeComponent
+  },
+  {
+    path: 'cart',
+    component: ShoppingCartComponent
   },
   {
     path: "products",
@@ -32,15 +43,43 @@ export const appRoutes: Routes = [
   },
   {
     path: "admin",
-    component: AdminComponent
+    component: AdminComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "admin/product/add",
-    component: ProductAddComponent
+    component: ProductAddComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "admin/product/edit/:id",
-    component: ProductEditComponent
+    component: ProductEditComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "categories",
+    component: CategoriesComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "categories/add",
+    component: CategoryAddComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "categories/edit/:id",
+    component: CategoryEditComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "photos",
+    component: PhotoListComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'photos/add',
+    component: PhotosAddComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "**",
