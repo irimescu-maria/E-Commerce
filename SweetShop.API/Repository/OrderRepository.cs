@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using SweetShop.API.Data;
 using SweetShop.API.Models;
 using SweetShop.API.UnitOfWork;
@@ -8,27 +11,27 @@ namespace SweetShop.API.Repository
     public class OrderRepository : IOrderRepository
     {
         private readonly DataContext _context;
-        private readonly ShoppingCart _shoppingCart;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IShoppingCartRepository _shoppingCartRepository;
 
         public OrderRepository(DataContext context,
-                                ShoppingCart shoppingCart,
-                                IUnitOfWork unitOfWork)
+                               IUnitOfWork unitOfWork,
+                               IShoppingCartRepository shoppingCartRepository)
         {
             _context = context;
-            _shoppingCart = shoppingCart;
             _unitOfWork = unitOfWork;
+            _shoppingCartRepository = shoppingCartRepository;
         }
-
         public void CreateOrder(Order order)
         {
             order.OrderPlaced = DateTime.Now;
             _context.Orders.Add(order);
 
-            var shoppingCartItems = _shoppingCart.ShoppingCartItems;
+            var shoppingCartItems = _shoppingCartRepository.GetShoppingCartItems();
+
             foreach (var item in shoppingCartItems)
             {
-                var orderDetail = new OrderDetail()
+                var orderDetail = new OrderDetail
                 {
                     Amount = item.Amount,
                     CakeId = item.Cake.Id,
@@ -38,6 +41,11 @@ namespace SweetShop.API.Repository
                 _context.OrderDetails.Add(orderDetail);
             }
             _unitOfWork.SaveAll();
+        }
+
+        public async Task<IEnumerable<Order>> GetAll()
+        {
+           return await _context.Orders.Include(c=>c.OrderDetails).ToListAsync();
         }
     }
 }

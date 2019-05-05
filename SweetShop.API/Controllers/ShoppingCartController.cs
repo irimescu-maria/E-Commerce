@@ -27,6 +27,13 @@ namespace SweetShop.API.Controllers
             return Ok(items);
         }
 
+        //GET: api/shoppingcart
+        [HttpGet]
+        public ActionResult GetTotal(){
+            var items = _shoppingCartRepository.GetShoppingCartTotal();
+            return Ok(items);
+        }
+
         //POST: api/shoppingCart/{id}
         [HttpPost("{id}")]
         public async Task<RedirectToActionResult> AddToShoppingCart(int id) 

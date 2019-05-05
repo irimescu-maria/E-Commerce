@@ -17,27 +17,32 @@ namespace SweetShop.API.Repository
         private readonly IUnitOfWork _unitOfWork;
         private ShoppingCart _shoppingCart;
 
-
+        private string ShoppingCartId { get; set; }
         public ShoppingCartRepository(DataContext dataContext,
-                                    IUnitOfWork unitOfWork,
-                                    ShoppingCart shoppingCart)
+                                    IUnitOfWork unitOfWork)
         {
             _dataContext = dataContext;
             _unitOfWork = unitOfWork;
-            _shoppingCart = shoppingCart;
         }
+        public static ShoppingCart GetCart(IServiceProvider services)
+        {
+            ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
 
+            string cartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
+            session.SetString("CartId", cartId);
+            return new ShoppingCart() { ShoppingCartId = cartId };
+        }
         public void AddToCart(Cake cake, int amount)
         {
             var shoppingCartItem = _dataContext.ShoppingCartItems
                                     .FirstOrDefault(s => s.Cake.Id == cake.Id
-                                    && s.ShoppingCartId == _shoppingCart.ShoppingCartId);
+                                    && s.ShoppingCartId == ShoppingCartId);
 
             if (shoppingCartItem == null)
             {
                 shoppingCartItem = new ShoppingCartItem
                 {
-                    ShoppingCartId = _shoppingCart.ShoppingCartId,
+                    ShoppingCartId = ShoppingCartId,
                     Cake = cake,
                     Amount = 1
                 };
@@ -57,11 +62,13 @@ namespace SweetShop.API.Repository
                                  .FirstOrDefault(s => s.Cake.Id == cake.Id);
 
             var localAmount = 0;
-            if(shoppingCartItem != null && shoppingCartItem.Amount > 1)
+            if (shoppingCartItem != null && shoppingCartItem.Amount > 1)
             {
                 shoppingCartItem.Amount--;
                 localAmount = shoppingCartItem.Amount;
-            }else {
+            }
+            else
+            {
                 _dataContext.ShoppingCartItems.Remove(shoppingCartItem);
             }
 
@@ -71,24 +78,24 @@ namespace SweetShop.API.Repository
 
         public List<ShoppingCartItem> GetShoppingCartItems()
         {
-           return _dataContext.ShoppingCartItems.Include(s=>s.Cake).ToList();
+            return _dataContext.ShoppingCartItems.Include(s => s.Cake).ToList();
         }
 
         public void ClearCart()
         {
-           var cartItems =_dataContext.ShoppingCartItems
-                                .Where(s=>s.ShoppingCartId == _shoppingCart.ShoppingCartId);
+            var cartItems = _dataContext.ShoppingCartItems
+                                 .Where(s => s.ShoppingCartId == _shoppingCart.ShoppingCartId);
 
             _dataContext.ShoppingCartItems.RemoveRange(cartItems);
 
-            _unitOfWork.SaveAll(); 
+            _unitOfWork.SaveAll();
         }
 
-        public decimal GetShoppingCartTotal()
+         public decimal GetShoppingCartTotal()
         {
             var total = _dataContext.ShoppingCartItems
-                                    .Where(c =>c.ShoppingCartId == _shoppingCart.ShoppingCartId)
-                                    .Select(c=>c.Cake.Price*c.Amount).Sum();
+                                    .Where(c => c.ShoppingCartId == _shoppingCart.ShoppingCartId)
+                                    .Select(c => c.Cake.Price * c.Amount).Sum();
             return total;
         }
     }

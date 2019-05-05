@@ -8,6 +8,6 @@ namespace SweetShop.API.Models
         public int Amount { get; set; }
         public decimal Price { get; set; }
         public virtual Cake Cake { get; set; }
-        public virtual Order Order { get; set; }          
+        // public virtual Order Order { get; set; }          
     }
 }

@@ -46,12 +46,9 @@ namespace SweetShop.Api
                 var jsonInputFormatter = options.InputFormatters.OfType<JsonInputFormatter>().First();
                 jsonInputFormatter.SupportedMediaTypes.Add("multipart/form-data");
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-
-
+            services.AddMemoryCache();
             services.AddSession();
 
-            services.AddMemoryCache();
 
             services.AddAutoMapper();
             services.AddScoped<ICakeRepository, CakeRepository>();
@@ -62,9 +59,9 @@ namespace SweetShop.Api
             services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IPhotoRepository, PhotoRepository>();
-
+            services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped(sp => ShoppingCart.GetCart(sp));
+            services.AddScoped(sp => ShoppingCartRepository.GetCart(sp));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -86,8 +83,9 @@ namespace SweetShop.Api
           .AllowAnyMethod().AllowAnyHeader()
    );
             // app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+                app.UseSession();
             app.UseMvc();
-            app.UseSession();
+        
 
 
         }

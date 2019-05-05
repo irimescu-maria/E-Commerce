@@ -10,14 +10,7 @@ namespace SweetShop.API.Models
         public string ShoppingCartId { get; set; }
         public List<ShoppingCartItem> ShoppingCartItems { get; set; }
         
-        public static ShoppingCart GetCart(IServiceProvider services)
-        {
-           ISession  session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
-
-            string cartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
-            session.SetString("CartId", cartId);
-            return new ShoppingCart() { ShoppingCartId = cartId };
-        }
+     
 
     }
 }
