@@ -9,6 +9,12 @@ namespace SweetShop.API.Data
         { }
 
         public DbSet<Cake> Cakes { get; set; }
-        public DbSet<Category> Category { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<Photo> Photos { get; set; }
+        
     }
 }

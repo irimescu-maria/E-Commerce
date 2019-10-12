@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GitHub\\E-Commerce\\SweetShop.API\\SweetShop.Api.csproj": {}
+    "C:\\Users\\Maria\\Desktop\\GitHub\\E-Commerce\\SweetShop.API\\SweetShop.Api.csproj": {}
   },
   "projects": {
-    "D:\\GitHub\\E-Commerce\\SweetShop.API\\SweetShop.Api.csproj": {
+    "C:\\Users\\Maria\\Desktop\\GitHub\\E-Commerce\\SweetShop.API\\SweetShop.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\E-Commerce\\SweetShop.API\\SweetShop.Api.csproj",
+        "projectUniqueName": "C:\\Users\\Maria\\Desktop\\GitHub\\E-Commerce\\SweetShop.API\\SweetShop.Api.csproj",
         "projectName": "SweetShop.Api",
-        "projectPath": "D:\\GitHub\\E-Commerce\\SweetShop.API\\SweetShop.Api.csproj",
+        "projectPath": "C:\\Users\\Maria\\Desktop\\GitHub\\E-Commerce\\SweetShop.API\\SweetShop.Api.csproj",
         "packagesPath": "C:\\Users\\Maria\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\E-Commerce\\SweetShop.API\\obj\\",
+        "outputPath": "C:\\Users\\Maria\\Desktop\\GitHub\\E-Commerce\\SweetShop.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -44,6 +44,10 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[4.0.1, )"
+            },
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.3.1, )"
             },
             "Microsoft.AspNetCore.App": {
               "suppressParent": "All",

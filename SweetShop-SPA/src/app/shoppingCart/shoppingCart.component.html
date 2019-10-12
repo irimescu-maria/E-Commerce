@@ -1,0 +1,21 @@
+<div class="container">
+    <h3>Shopping Cart</h3>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th></th>
+        </tr>
+        <tbody *ngFor="let cart of shoppingCartItems" >
+            <tr>
+                <td> {{cart.cake.name}}</td>
+                <td>{{cart.cake.price}}</td>
+                <td>{{cart.amount}}</td>
+                <td><button (click)="delete(cart.cake.id);">Remove from cart</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-info" 
+            (click)="cancel();">Back to list of cakes</button>
+    <div>

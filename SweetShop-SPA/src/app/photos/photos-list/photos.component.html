@@ -1,0 +1,26 @@
+<div class="container">
+    <h5>List of photos</h5>
+    <br/>
+    <button class="btn btn-primary" [routerLink]="['/photos/add']">Add</button>
+    <br />
+    <br />
+    <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th></th>
+        </tr>
+        <tbody>
+            <tr *ngFor="let photo of photos">
+                <td>{{photo.id}}</td>
+                <td>{{photo.name}}</td>
+                <td><img [src]="imageUrl"/></td>
+                <td>
+                    <button class="btn btn-danger" (click)="delete(photo.id)">Delete</button> |
+                    <!-- <button class="btn btn-info" [routerLink]="['/photos/edit/', photo.id]">Edit</button> -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

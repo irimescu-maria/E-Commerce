@@ -1,0 +1,25 @@
+<div class="container">
+    <br />
+    <h3>Categories</h3>
+    <br/>
+<button class="btn btn-primary" [routerLink]="['/categories/add']">Add</button>
+<br />
+<br />
+    <table class="table" style="width: 75%;">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th></th>
+        </tr>
+        <tbody>
+        <tr *ngFor="let category of categories">
+            <td>{{category.id}}</td>
+            <td>{{category.name}}</td>
+            <td>
+                <button class="btn btn-danger" (click)="delete(category.id)">Delete</button> |
+                <button class="btn btn-info" [routerLink]="['/categories/edit/', category.id]">Edit</button>
+            </td>
+        </tr>
+    </tbody>
+    </table>
+</div>
